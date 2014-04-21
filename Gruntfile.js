@@ -24,6 +24,7 @@ module.exports = function(grunt) {
             "amazon-fireos": {},
             "android": {},
             "blackberry10": {},
+            "desktop": {},
             "ios": {},
             "osx": {},
             "test": {},
