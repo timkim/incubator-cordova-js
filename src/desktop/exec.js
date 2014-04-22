@@ -34,5 +34,18 @@ var cordova = require('cordova');
  * @param {String[]} [args]     Zero or more arguments to pass to the method
  */
 module.exports = function (success, fail, service, action, args) {
-    console.log(service, action , 'is currently unsupported on the desktop browser. No callback will be triggered.');
+    // hack to get deviceready to fire on browser and make any other 'native' call error out
+    if(service=="Device" && action=="getDeviceInfo"){
+        var info = {
+            platform : 'desktop', 
+            version : '0.1',
+            uuid : '1.0.0',
+            model :'desktop'
+        };
+        success(info);
+    }else if(service=="NetworkStatus" && action=="getConnectionInfo"){
+        success('wifi');
+    }else{
+        console.log(service, action , 'is currently unsupported on the desktop browser. No callback will be triggered.');
+    }
 };
